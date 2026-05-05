@@ -23,7 +23,7 @@ function EditRoleMobile() {
   const handleEdit=async () => {
     
     try {
-      const result=await axios.post("/api/user/edit-role-mobile",
+      await axios.post("/api/user/edit-role-mobile",
        {role:selectedRole,
         mobile
 

@@ -37,9 +37,12 @@ const RegisterForm = ({ previousStep }: propType) => {
             console.log(result.data)
             router.push("/login")
             setLoading(false)
-        } catch (error:any) {
+        } catch (error: unknown) {
             console.log(error)
-            const message = error.response?.data?.message || "Something went wrong. Please try again."
+            let message = "Something went wrong. Please try again."
+            if (axios.isAxiosError(error) && error.response?.data?.message) {
+                message = error.response.data.message
+            }
             setError(message)
             setLoading(false)
         }

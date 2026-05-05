@@ -41,7 +41,7 @@ useEffect(()=>{
  setCurrent((prev)=>(prev+1)%(slides.length))
     },4000)
 return ()=>clearInterval(timer)
-},[])
+},[slides.length])
     return (
 
         <div className='relative w-[98%] mx-auto mt-32 h-[80vh] rounded-3xl overflow-hidden shadow-2xl'>

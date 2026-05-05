@@ -64,12 +64,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         
         // Google profile typically has 'picture', while NextAuth maps it to 'image'
         // We use both as fallback to ensure we capture it
-        const userImage = user.image || (profile as any)?.picture;
+        const userImage = user.image || (profile as Record<string, unknown>)?.picture;
         
         console.log("Google Sign-In Attempt:", {
           email: user.email,
           imageFromUser: user.image,
-          imageFromProfile: (profile as any)?.picture
+          imageFromProfile: (profile as Record<string, unknown>)?.picture
         });
 
         let dbUser = await User.findOne({ email: user.email })

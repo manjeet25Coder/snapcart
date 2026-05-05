@@ -35,14 +35,14 @@ const grocerySchema = new mongoose.Schema<IGrocery>({
     },
     price: {
         type: String,
+        required: true
+    },
+    unit: {
+        type: String,
         required: true,
         enum:[
             "kg", "g","liter", "ml", "piece","pack"
         ]
-    },
-    unit: {
-        type: String,
-        required: true
     },
     image: {
         type: String,
@@ -52,5 +52,8 @@ const grocerySchema = new mongoose.Schema<IGrocery>({
     timestamps: true
 })
 
-const Grocery=mongoose.models.Grocery || mongoose.model("Grocery", grocerySchema)
-export default Grocery
+if (mongoose.models.Grocery) {
+    delete mongoose.models.Grocery;
+}
+const Grocery = mongoose.model("Grocery", grocerySchema);
+export default Grocery;

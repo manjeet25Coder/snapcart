@@ -29,7 +29,7 @@ export async function POST (req:NextRequest){
         })
         return NextResponse.json(
            grocery,
-           {status:400}        
+           {status: 201}        
         )
     } catch (error) {
         return NextResponse.json(
